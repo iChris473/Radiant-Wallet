@@ -15,13 +15,13 @@ export const AuthContextProvider = ({children}) => {
         setAppLoading(false);
 
         const res = await request.get("/isloggedin");
-
-        setLoggedIn(res?.data || false);
+        console.log(res);
+        // setLoggedIn(res?.data || false);
 
     };
 
     useEffect(() => {
-        // getLoggedIn();
+        getLoggedIn();
     }, []);
 
     return (

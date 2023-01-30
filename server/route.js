@@ -11,7 +11,7 @@ router.get('/wallet', validateToken, getWallet);
 // update wallet
 router.put('/wallet', validateToken, updateWallet);
 // check if user is logged in
-router.get('/isloggedin', validateToken, isLoggedIn);
+router.get('/isloggedin', isLoggedIn);
 // logout user 
 router.get('/logout', logOut);
 
