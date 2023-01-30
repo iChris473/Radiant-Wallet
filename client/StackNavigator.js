@@ -1,0 +1,60 @@
+
+import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from "./screens/login/Login.js"
+import Register from './screens/register/Register.js';
+import ForgotPassword from './screens/forgot/ForgotPassword.js';
+import CreatePin from './screens/pin/CreatePin.js';
+import ConfirmPin from './screens/pin/ConfirmPin.js';
+import Start from './screens/start/Start.js';
+import Tabs from "./tabs/Index"
+import SignupGuest from './screens/guest/SignupGuest.js';
+import GuestOtp from './screens/guest/GuestOtp.js';
+import TvSubscription from './screens/tv/TvSubscription.js';
+import Confirmation from './screens/confirmation/Confirmation.js';
+import EnterPin from './screens/pin/EnterPin.js';
+import Electricity from './screens/electricity/Electricity.js';
+import Airtime from './screens/airtime/Airtime.js';
+import Data from './screens/data/Data.js';
+import Dashboard from './screens/dashboard/Dashboard.js';
+import Swap from './screens/tv/Swap.js';
+import Setup from './screens/guest/Setup.js';
+
+const StackNavigator = () => {
+
+    const Stack = createNativeStackNavigator();
+
+    // const user = false
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+        initialRouteName={"Start"}
+      >
+        <Stack.Screen name="Start" component={Start} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Setup" component={Setup} />
+        <Stack.Screen name="Forgot" component={ForgotPassword} />
+        <Stack.Screen name="CreatePin" component={CreatePin} />
+        <Stack.Screen name="ConfirmPin" component={ConfirmPin} />
+        <Stack.Screen name="EnterPin" component={EnterPin} />
+        <Stack.Screen name="RegisterGuest" component={SignupGuest} /> 
+        <Stack.Screen name="Dashboard" component={Dashboard} /> 
+        <Stack.Screen name="ConfirmPayment" component={Confirmation} /> 
+        <Stack.Screen name="GuestOtp" component={GuestOtp} /> 
+        <Stack.Screen name="TvSubscription" component={TvSubscription} /> 
+        <Stack.Screen name="Swap" component={Swap} /> 
+        <Stack.Screen name="Electricity" component={Electricity} /> 
+        <Stack.Screen name="Airtime" component={Airtime} />
+        <Stack.Screen name="Data" component={Data} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default StackNavigator;

@@ -1,0 +1,13 @@
+1. User create or import Wallet
+2. User gets cookie from server
+3. user get balance from server with the cookie
+
+When user opens app
+- Check if user is logged in with the cookie
+- if user is logged in go to dashboard
+- Else show startup screen
+- If user clicks logout button, delete cookie and go back to startup screen
+
+TODO LIST 
+- Context API with react native
+- App Splash screen
