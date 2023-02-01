@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { validateToken } = require("./auth.route");
-const { createWallet, importWallet, getWallet, updateWallet, isLoggedIn, logOut } = require("./user.controller");
+const { createWallet, importWallet, getWallet, updateWallet, isLoggedIn, logOut, depositCrypto, swapCrypto } = require("./user.controller");
 
 // create user
 router.post("/register", createWallet);
@@ -14,5 +14,9 @@ router.put('/wallet', validateToken, updateWallet);
 router.get('/isloggedin', isLoggedIn);
 // logout user 
 router.get('/logout', logOut);
+// DEPOSIT CRYPTO
+router.post('/deposit', validateToken, depositCrypto);
+// SWAP CRYPTO
+router.post('/swap', validateToken, swapCrypto)
 
 module.exports = router; 
