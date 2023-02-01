@@ -30,7 +30,7 @@ const router = require("./route");
 app.use("/api", router);
 
 
-const port = process.env.PORT || 1300;
+const port = process.env.PORT || 1400;
 
 app.get("/", (req, res) => res.send(`Radiant Wallet is Running`));
 

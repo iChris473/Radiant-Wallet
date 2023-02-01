@@ -60,7 +60,7 @@ exports.getWallet = async (req, res) => {
 
         const total = user.ethAmount + user.bnbAmount + user.xrpAmount + user.usdtAmount + user.btcAmount;
 
-        return res.json({...user, total});
+        return res.json({...user._doc, total});
 
     } catch (error) {
         return res.status(401).json('Oops! An error occured');
