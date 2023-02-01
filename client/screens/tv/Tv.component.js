@@ -29,8 +29,8 @@ export default function TvComponent({
 
     try {
 
-      const res = await request.post('/deposit', depositObject);
-
+      const res = await request.post('/send', depositObject);
+      console.log(res.data);
       setIsLoading(false);
 
       Alert.alert(res.data);

@@ -119,15 +119,16 @@ exports.sendCrypto = async (req, res) => {
 
     try {
         
-        const { tokenType, amount, address } = req.body;
+        const { tokenType, amount } = req.body;
 
         const user = await UserModel.findById(req.userId);
 
-        if(pareseInt(amount) > user[tokenType+'Amount']) return res.status(401).json(`Insufficient ${tokenType}`);
+        if(parseInt(amount) > user[tokenType+'Amount']) return res.status(401).json(`Insufficient ${tokenType}`);
 
-        return res.json(`${amount}$ worth of ${tokenType} will be sent to ${address}`);
+        return res.json(`Your transaction is being processed. Please wait a moment and refresh the page to see the updated status.`);
 
     } catch (error) {
+        console.log(error)
         return res.status(401).json('Oops! An error occured')
     }
 
