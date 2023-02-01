@@ -12,11 +12,13 @@ import TvComponent from "./Tv.component";
 import BillingComponent from "../../components/services/Biller";
 import PaymentItem from "../../components/services/PaymentItem";
 import Topview from "../../components/services/Topview";
+import Loading from "../../components/loading/Loading";
 
 export default function TvSubscription({ navigation }) {
 
   const [billers, setBillers] = useState(false);
   const [payItem, setPayItem] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [tvService, setTvService] = useState({ name: 'BTC', description: 'Bitcoin', pic: require("../../assets/btc.png") });
 
   const handleModal = () => {
@@ -26,7 +28,7 @@ export default function TvSubscription({ navigation }) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={[{ flex: 1 }, (Platform.OS === 'android') && {paddingTop: 30}]}
+      style={[{ flex: 1 }, {paddingTop: 30}]}
     >
       <View style={styles.blueSemiCirlce} />
       <MyStatusBar />
@@ -40,6 +42,7 @@ export default function TvSubscription({ navigation }) {
           setTvService={setTvService}
           payItem={payItem}
           setPayItem={setPayItem}
+          setIsLoading={setIsLoading}
         />
       </ScrollView>
       {billers && (
@@ -55,6 +58,7 @@ export default function TvSubscription({ navigation }) {
           onLongPress={() => {}}
         />
       )}
+      {isLoading && <Loading />}
     </KeyboardAvoidingView>
   );
 }

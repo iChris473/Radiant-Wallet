@@ -3,27 +3,25 @@ import { View, ImageBackground, ScrollView, StatusBar, Platform } from 'react-na
 import React from 'react';
 import styles from "./dashboard.style";
 import DashboardComponent from './Dashboard.component';
-import Sidebar from '../../components/sidebar/Sidebar';
-import SeedPhrase from '../../components/phrase/SeedPhrase';
+import Settings from '../../components/phrase/Settings';
+import Loading from '../../components/loading/Loading';
 
 export default function Dashboard({navigation}) {
 
-    const [showSide, setShowSide] = React.useState(false);
-
     const [showPhrase, setShowPhrase] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(true);
 
     return (
         <ImageBackground
             resizeMode="cover"
-            style={[styles.imgBg, (Platform.OS === 'android') && {paddingTop: 30}]}
+            style={[styles.imgBg, {paddingTop: 30}]}
             source={require("../../assets/bg2.png")}
         >
             <StatusBar backgroundColor={'white'}  />
             <View style={styles.blueSemiCirlce} />
-            <ScrollView scrollEnabled={!showSide}>
-                <DashboardComponent navigation={navigation} showSide={showSide} setShowSide={setShowSide} setShowPhrase={setShowPhrase} />
-            </ScrollView>
-            {showPhrase && <SeedPhrase setShowPhrase={setShowPhrase} />  }
+            <DashboardComponent navigation={navigation} setIsLoading={setIsLoading} setShowPhrase={setShowPhrase} />
+            {showPhrase && <Settings setShowPhrase={setShowPhrase} />}
+            {isLoading && <Loading />}
         </ImageBackground>
     )
 }

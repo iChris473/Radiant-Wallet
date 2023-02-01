@@ -1,17 +1,44 @@
 
-import { View, Image, Text, TextInput, TouchableOpacity, Pressable, Keyboard } from 'react-native';
-import { useState } from 'react';
+import { View, Image, Text, TextInput, TouchableOpacity, Pressable, Keyboard, Alert } from 'react-native';
+import { useContext, useState } from 'react';
 import styles from "./signup.style";
 import ArrowLeftIcon from '../../svgs/ArrowLeftIcon';
 import RNTextArea from '@freakycoder/react-native-text-area';
+import { request } from '../../axios';
+import AuthContext from '../../context/AuthContext';
 
-export default function SignupComponent({ navigation, confirmBtn }) {
+export default function SignupComponent({ navigation, setIsLoading }) {
 
-    const [viewPass, setViewPass] = useState(true)
+    const [mnemonic, setMnemonic] = useState('');
+    
+    const { setLoggedIn } = useContext(AuthContext);
 
-    const [isNoComplete, setisNoComplete] = useState("")
+    const importWallet = async () => {
+        
+        setIsLoading(true);
 
-    const opacity = (isNoComplete.length === 11) ? true : false
+
+        try {
+            
+            await request.post('/import', { mnemonic });
+
+            setIsLoading(false);
+
+            setLoggedIn(true);
+
+            // navigation.navigate("Dashboard");
+       
+        } catch (error) {
+        
+            setIsLoading(false);
+
+            Alert.alert(error?.response?.data || 'Wallet not found');
+        
+        }
+
+    }
+
+    // const opacity = (isNoComplete.length === 11) ? true : false;
 
     return (
         <View style={styles.container}>
@@ -38,14 +65,15 @@ export default function SignupComponent({ navigation, confirmBtn }) {
                     placeholderTextColor="black"
                     exceedCharCountColor="#990606"
                     placeholder="Enter Secret Phrase"
+                    onChangeText={newText => setMnemonic(newText)}
+                    defaultValue={mnemonic}
                 />
             </View>
             {/* PROCEED BUTTON */}
             <TouchableOpacity
-                disabled={opacity}
-                ref={confirmBtn}
-                style={{ ...styles.button, zIndex: 5, opacity: !opacity ? 1 : .4, width: "90%" }}
-                onPress={() => navigation.navigate("Dashboard")}
+                disabled={!mnemonic}
+                style={{ ...styles.button, zIndex: 5, opacity: mnemonic ? 1 : .6, width: "90%" }}
+                onPress={importWallet}
             >
                 <Text style={styles.btnText}>Import</Text>
             </TouchableOpacity>

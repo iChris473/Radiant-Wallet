@@ -2,10 +2,11 @@
 import { ImageBackground, KeyboardAvoidingView } from 'react-native';
 import styles from "./signup.style";
 import SetupComponent from './Setup.component';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Loading from '../../components/loading/Loading';
 import { ScrollView } from 'react-native-gesture-handler';
 import MyStatusBar from '../../components/MyStatusBar';
+import { request } from '../../axios';
 
 export default function SignupGuest({navigation}) {
 
@@ -14,7 +15,7 @@ export default function SignupGuest({navigation}) {
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={[{ flex: 1 }, (Platform.OS === 'android') && {paddingTop: 10}]}
+            style={[{ flex: 1 }, {paddingTop: 10}]}
         >
             <MyStatusBar />
             <ImageBackground

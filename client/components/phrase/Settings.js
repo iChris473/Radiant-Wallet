@@ -1,22 +1,94 @@
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import React from 'react';
 import * as Clipboard from 'expo-clipboard';
 import XIcon from '../../svgs/XIcon';
+import { TextInput } from 'react-native-gesture-handler';
+import AuthContext from '../../context/AuthContext';
+import { request } from '../../axios';
 
-export default function SeedPhrase({setShowPhrase}) {
+export default function Settings({setShowPhrase}) {
     
     const [copied, setCopied] = React.useState(false);
 
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    const [mnemonic, setMnemonic] = React.useState('');
+
+    const { setLoggedIn } = React.useContext(AuthContext);
+
+    React.useEffect(() => {
+        
+        const createWalletFunction = async () => {
+            try {
+                const res = await request.get('/wallet');
+                setMnemonic(res?.data?.mnemonic);
+                setIsLoading(false);
+            } catch (error) {
+                setIsLoading(false);
+            }
+        }
+
+        createWalletFunction();
+
+    }, []);
+
     const copyAddress = async () => {
-        await Clipboard.setStringAsync('Write down or copy these words in the right order and save them somewhere safe');
+        
+        await Clipboard.setStringAsync(mnemonic);
+
         setCopied(true);
+    
         setTimeout(() => {
             setCopied(false)
         }, 3000)
+    
+    }
+
+    const signout = () => {
+
+        Alert.alert('Confirm Sign out', 'Your wallet will be deleted from this device', [
+
+          {
+            text: 'Cancel',
+            onPress: () => { },
+            style: 'cancel',
+          },
+
+          {text: 'OK', onPress: async () => {
+
+            setIsLoading(true);
+            
+            try {
+                await request.get('/logout');
+    
+                setIsLoading(false);
+    
+                setLoggedIn(false);
+    
+            } catch (error) {
+    
+                setIsLoading(false);
+    
+                Alert.alert(error?.response?.data || 'Error signing out');
+    
+            }
+
+          }},
+
+        ]);
+
     }
 
   return (
       <View style={styles.container}>
+          {isLoading && 
+          <View style={styles.loading}>
+              <ActivityIndicator size="large" color="#6843A1" />
+          </View>
+          }
+          <TouchableOpacity onPress={signout} style={styles.signout}>
+            <Text style={styles.signoutText}>Sign out of wallet</Text>
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => setShowPhrase(false)} style={styles.xicon}>
             <XIcon />
           </TouchableOpacity>
@@ -26,7 +98,7 @@ export default function SeedPhrase({setShowPhrase}) {
           </View>
           <View style={styles.phrases}>
               {
-                  ('Write down or copy these words in the right order and save them somewhere safe')
+                  (mnemonic)
                       .split(' ')
                       .map((text, i) => (
                           <View style={styles.phrasec} key={i}>
@@ -46,6 +118,15 @@ export default function SeedPhrase({setShowPhrase}) {
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+    loading: {
+        position: 'absolute',
+        height, 
+        width,
+        backgroundColor: 'rgba(255,255,255,.8)',
+        flex: 1,
+        justifyContent: 'center',
+        zIndex: 999
+      },
     container: {
         height: height + 30, 
         width,
@@ -110,4 +191,14 @@ const styles = StyleSheet.create({
         marginVertical: 20,
         fontSize: 16
     },
+    signout: {
+        position: 'absolute',
+        top: 75,
+        left: 15
+    },
+    signoutText: {
+        color: 'red',
+        fontWeight: 'bold',
+        fontSize: 17
+    }
 })

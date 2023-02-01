@@ -2,13 +2,14 @@
 import { ImageBackground, KeyboardAvoidingView, View } from 'react-native';
 import styles from "./signup.style";
 import SignupComponent from './Signup.component';
-import { useRef } from 'react';
+import { useState } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import MyStatusBar from '../../components/MyStatusBar';
+import Loading from '../../components/loading/Loading';
 
 export default function SignupGuest({navigation}) {
 
-    const confirmBtn = useRef();
+    const [isLoading, setIsLoading] = useState(false);
 
     return (
         <KeyboardAvoidingView
@@ -22,12 +23,11 @@ export default function SignupGuest({navigation}) {
                 source={require("../../assets/bg2.png")}
             >
                 <ScrollView>
-                    <SignupComponent confirmBtn={confirmBtn} navigation={navigation} />
+                    <SignupComponent setIsLoading={setIsLoading} navigation={navigation} />
                 </ScrollView>
             </ImageBackground>
+            { isLoading && <Loading /> }
         </KeyboardAvoidingView>
-
-
     )
 }
 

@@ -8,15 +8,16 @@ export const AuthContextProvider = ({children}) => {
 
     const [appLoading, setAppLoading] = useState(true);
     
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
 
     const getLoggedIn = async () => {
 
-        setAppLoading(false);
-
+        
         const res = await request.get("/isloggedin");
-        console.log(res);
-        // setLoggedIn(res?.data || false);
+        
+        setLoggedIn(res?.data || false);
+
+        setAppLoading(false);
 
     };
 
@@ -28,6 +29,7 @@ export const AuthContextProvider = ({children}) => {
         <AuthContext.Provider value={{
             loggedIn,
             getLoggedIn,
+            setLoggedIn,
             appLoading
         }}>
             {children}

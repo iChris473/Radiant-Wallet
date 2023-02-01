@@ -12,7 +12,7 @@ export default function Confirmation({navigation, route}) {
     return (
         <ImageBackground
             resizeMode="cover"
-            style={[styles.imgBg, (Platform.OS === 'android') && {paddingTop: 30}]}
+            style={[styles.imgBg, {paddingTop: 30}]}
             source={require("../../assets/bg2.png")}
         >
             <MyStatusBar />

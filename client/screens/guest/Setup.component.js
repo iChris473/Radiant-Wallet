@@ -5,18 +5,16 @@ import styles from "./signup.style";
 import ArrowLeftIcon from '../../svgs/ArrowLeftIcon';
 import * as Clipboard from 'expo-clipboard';
 import { request } from '../../axios';
-import AuthContext from '../../context/AuthContext';
 
 export default function SetupComponent({ navigation, setIsLoading }) {
 
     const [isNoComplete, setisNoComplete] = useState("");
+
     const [copied, setCopied] = useState(false);
-    
-    const { dispatch } = useContext(AuthContext);
 
     const copyAddress = async () => {
 
-        await Clipboard.setStringAsync('Write down or copy these words in the right order and save them somewhere safe');
+        await Clipboard.setStringAsync(mnemonic);
 
         setCopied(true);
 
@@ -27,42 +25,24 @@ export default function SetupComponent({ navigation, setIsLoading }) {
     }
 
     const opacity = (isNoComplete.length === 11) ? true : false;
-
-    const createWallet = () => {
-
-        setIsLoading(true);
-        
-        setTimeout(() => {
-
-            navigation.navigate("Dashboard");
-
-            setIsLoading(false);
-
-        }, 2000)
-
-    }
+    
+    const [mnemonic, setMnemonic] = useState("");
 
     useEffect(() => {
         
         const createWalletFunction = async () => {
-
             try {
-                
-                const wallet = await request.post('/register');
-
-                console.log(wallet.data);
-                
+                const res = await request.post('/register');
+                setMnemonic(res?.data?.mnemonic);
+                setIsLoading(false);
             } catch (error) {
-            
-                console.log(error);
-            
+                setIsLoading(false);
             }
-
         }
 
-        createWalletFunction()
+        createWalletFunction();
 
-    }, [])
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -84,7 +64,7 @@ export default function SetupComponent({ navigation, setIsLoading }) {
             </View>
             <View style={styles.phrases}>
                 {
-                    ('Write down or copy these words in the right order and save them somewhere safe')
+                    mnemonic
                     .split(' ')
                     .map((text, i) => (
                         <View style={styles.phrasec} key={i}>
@@ -105,7 +85,7 @@ export default function SetupComponent({ navigation, setIsLoading }) {
             <TouchableOpacity
                 disabled={opacity}
                 style={{ ...styles.button, zIndex: 5, opacity: !opacity ? 1 : .4, width: "90%" }}
-                onPress={createWallet}
+                onPress={() => navigation.navigate("RegisterGuest")}
             >
                 <Text style={styles.btnText}>Continue</Text>
             </TouchableOpacity>

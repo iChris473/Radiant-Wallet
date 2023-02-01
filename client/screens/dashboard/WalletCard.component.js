@@ -4,7 +4,7 @@ import { View, Text, Image, Animated, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
 import styles from "./dashboard.style";
 
-export default function WalletCardComponent({navigation}) {
+export default function WalletCardComponent({navigation, wallet}) {
 
     const [fadeAnimation] = useState(new Animated.Value(0));
 
@@ -69,8 +69,7 @@ export default function WalletCardComponent({navigation}) {
                     />
                 </TouchableOpacity>
             </View>
-            <Text style={styles.mainBalance}>$0.00</Text>
-            <Text style={styles.createPin}>0.00 USDT</Text>
+            <Text style={styles.mainBalance}>${wallet?.total?.toLocaleString() || 0}.00</Text>
         </View>
     )
 }

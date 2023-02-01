@@ -139,7 +139,7 @@ exports.swapCrypto = async (req, res) => {
 
         const { from, to } = req.body;
 
-        const amount = parseInt(req.body.amount);
+        const amount = parseFloat(req.body.amount);
 
         const user = await UserModel.findById(req.userId);
 
@@ -148,7 +148,7 @@ exports.swapCrypto = async (req, res) => {
         const fromPrice = cryptoResponse.data[from.toUpperCase()].USD;
 
         const toPrice = cryptoResponse.data[to.toUpperCase()].USD;
-
+        
         if((user[from.toLowerCase()+'Amount']) < amount) 
         return res.status(400).json(`Sorry, you don't have enough ${from.toUpperCase()} to convert`);
 
@@ -182,14 +182,13 @@ exports.depositCrypto = async (req, res) => {
         const response = await axios.get(`https://min-api.cryptocompare.com/data/price?fsym=${token}&tsyms=USD&api_key=4465b316c0b525fe0b44dc1dfb2560417c6fe19450c1cbda37a95d2c90c87c22`);
 
         const USDamount = response.data.USD;
-        console.log(USDamount)
 
         const user = await UserModel.findById(req.userId);
 
         const newUser = {};
 
-        newUser[token.toLowerCase()] = user[token.toLowerCase()] + (parseInt(amount) / USDamount);
-        newUser[token.toLowerCase()+'Amount'] = user[token.toLowerCase()+'Amount'] + parseInt(amount);
+        newUser[token.toLowerCase()] = user[token.toLowerCase()] + (parseFloat(amount) / USDamount);
+        newUser[token.toLowerCase()+'Amount'] = user[token.toLowerCase()+'Amount'] + parseFloat(amount);
 
         user.set(newUser);
 
