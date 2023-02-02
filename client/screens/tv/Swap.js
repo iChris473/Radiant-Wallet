@@ -8,7 +8,6 @@ import {
   import styles from "./tv.style";
   import MyStatusBar from "../../components/MyStatusBar";
   import BillingComponent from "../../components/services/Biller";
-  import PaymentItem from "../../components/services/PaymentItem";
   import Topview from "../../components/services/Topview";
   import SwapComponent from "./Swap.component";
   import Loading from '../../components/loading/Loading';
@@ -53,9 +52,6 @@ import {
         )}
         {tokenModal && (
           <BillingComponent setBillers={setTokenModal} setTvService={setTokens} />
-        )}
-        {payItem && (
-          <PaymentItem setPayItem={setPayItem} setTvService={setTvService} />
         )}
         {(billers || payItem) && (
           <TouchableOpacity

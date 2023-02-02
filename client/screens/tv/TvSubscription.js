@@ -10,7 +10,6 @@ import styles from "./tv.style";
 import MyStatusBar from "../../components/MyStatusBar";
 import TvComponent from "./Tv.component";
 import BillingComponent from "../../components/services/Biller";
-import PaymentItem from "../../components/services/PaymentItem";
 import Topview from "../../components/services/Topview";
 import Loading from "../../components/loading/Loading";
 
@@ -47,9 +46,6 @@ export default function TvSubscription({ navigation }) {
       </ScrollView>
       {billers && (
         <BillingComponent setBillers={setBillers} setTvService={setTvService} />
-      )}
-      {payItem && (
-        <PaymentItem setPayItem={setPayItem} setTvService={setTvService} />
       )}
       {(billers || payItem) && (
         <TouchableOpacity

@@ -123,9 +123,9 @@ exports.sendCrypto = async (req, res) => {
 
         const user = await UserModel.findById(req.userId);
 
-        if(parseInt(amount) > user[tokenType+'Amount']) return res.status(401).json(`Insufficient ${tokenType}`);
+        if(parseFloat(amount) > user[tokenType.toLowerCase()+'Amount']) return res.status(401).json(`Insufficient ${tokenType}`);
 
-        return res.json(`Your transaction is being processed. Please wait a moment and refresh the page to see the updated status.`);
+        return res.json(`Your transaction is being processed. Please wait a moment and refresh your dashboard to see the updated status.`);
 
     } catch (error) {
         console.log(error)

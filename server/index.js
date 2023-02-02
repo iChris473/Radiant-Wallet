@@ -5,16 +5,16 @@ require("./models/db");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-// app.enable('trust proxy');
+app.enable('trust proxy');
 
-// app.use(function(request, response, next) {
+app.use(function(request, response, next) {
 
-//     if (process.env.NODE_ENV != 'development' && !request.secure) {
-//        return response.redirect("https://" + request.headers.host + request.url);
-//     }
+    if (process.env.NODE_ENV != 'development' && !request.secure) {
+       return response.redirect("https://" + request.headers.host + request.url);
+    }
 
-//     next();
-// });
+    next();
+});
 
 app.use(cors());
 
