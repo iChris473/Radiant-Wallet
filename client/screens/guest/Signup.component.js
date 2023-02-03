@@ -53,7 +53,7 @@ export default function SignupComponent({ navigation, setIsLoading }) {
                     resizeMode="contain"
                     style={styles.logo}
                 />
-                <Text style={styles.royalipay}>Radiant Walllet</Text>
+                <Text style={styles.royalipay}>Radiant Wallet</Text>
             </View>
             <View style={styles.secretDesc}>
                 <Text style={styles.secretText1}>Enter your secret phrase to import wallet</Text>

@@ -60,8 +60,9 @@ const styles = StyleSheet.create({
     },
     royalipay: {
         color: "green",
-        fontFamily: 'BoldMontserrat',
+        // fontFamily: 'BoldMontserrat',
         fontSize: 17,
+        fontWeight: 'bold'
     },
     signIn: {
         color: "#6843A1",

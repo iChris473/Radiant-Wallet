@@ -155,11 +155,11 @@ exports.swapCrypto = async (req, res) => {
 
         const newUser = {};
         
-        newUser[from.toLowerCase()] = Math.max(0, parseFloat((user[from.toLowerCase()] - (amount / fromPrice)).toFixed(3)));
+        newUser[from.toLowerCase()] = Math.max(0, parseFloat((user[from.toLowerCase()] - (amount / fromPrice)).toFixed(4)));
         
         newUser[from.toLowerCase()+'Amount'] = Math.max(0, user[from.toLowerCase()+'Amount'] - amount);
 
-        newUser[to.toLowerCase()] = parseFloat(user[to.toLowerCase()] + (amount / toPrice)).toFixed(8);
+        newUser[to.toLowerCase()] = parseFloat((user[to.toLowerCase()] + (amount / toPrice)).toFixed(8));
         
         newUser[to.toLowerCase()+'Amount'] = user[to.toLowerCase()+'Amount'] + amount;
 

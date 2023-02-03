@@ -41,8 +41,9 @@ const styles = StyleSheet.create({
     },
     royalipay: {
         color: "green",
-        fontFamily: 'BoldMontserrat',
+        // fontFamily: 'BoldMontserrat',
         fontSize: 17,
+        fontWeight: 'bold'
     },
     purpleCircle: {
         backgroundColor: "#EFE5FF",

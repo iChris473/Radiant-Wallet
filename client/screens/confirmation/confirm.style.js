@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         textAlign: "left",
         margin: 10,
         opacity: 0.7,
-        fontFamily: 'BoldMontserrat'
+        // fontFamily: 'BoldMontserrat'
       }, 
       messageCont: {
         marginTop: 20,

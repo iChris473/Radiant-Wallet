@@ -41,7 +41,7 @@ export default function StartComponent({navigation}) {
                     resizeMode="contain"
                     style={styles.logo}
                 />
-                <Text style={styles.royalipay}>Radiant Walllet</Text>
+                <Text style={styles.royalipay}>Radiant Wallet</Text>
             </View>
             {/* PURPLE CURCLE */}
             <View style={styles.purpleCircle} />

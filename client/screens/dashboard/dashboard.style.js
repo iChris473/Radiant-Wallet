@@ -133,7 +133,8 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginTop: 30,
         color: "#4b4b4b",
-        fontFamily: "EBMontserrat"
+        fontWeight: '900'
+        // fontFamily: "EBMontserrat"
     },
     createPin: {
         position: "absolute",
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontSize: 17,
         opacity: .7,
-        fontFamily: 'BoldMontserrat'
+        // fontFamily: 'BoldMontserrat'
     },
     designParent: {
         position: "absolute",
