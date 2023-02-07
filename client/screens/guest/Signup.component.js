@@ -3,7 +3,6 @@ import { View, Image, Text, TextInput, TouchableOpacity, Pressable, Keyboard, Al
 import { useContext, useState } from 'react';
 import styles from "./signup.style";
 import ArrowLeftIcon from '../../svgs/ArrowLeftIcon';
-import RNTextArea from '@freakycoder/react-native-text-area';
 import { request } from '../../axios';
 import AuthContext from '../../context/AuthContext';
 
@@ -60,11 +59,11 @@ export default function SignupComponent({ navigation, setIsLoading }) {
                 <Text style={styles.secretText2}>Secret Phrases are typically 12(sometimes 24) words seperated by single spaces</Text>
             </View>
             <View style={styles.inputContainer}>
-                <RNTextArea
-                    maxCharLimit={200}
+                <TextInput
+                    multiline={true}
+                    numberOfLines={4}
                     placeholderTextColor="black"
-                    exceedCharCountColor="#990606"
-                    placeholder="Enter Secret Phrase"
+                    placeholder="Enter Secret Phraser"
                     onChangeText={newText => setMnemonic(newText)}
                     defaultValue={mnemonic}
                 />

@@ -1,5 +1,5 @@
 
-import { ImageBackground, KeyboardAvoidingView, View } from 'react-native';
+import { ImageBackground, KeyboardAvoidingView, Platform, View } from 'react-native';
 import styles from "./signup.style";
 import SignupComponent from './Signup.component';
 import { useState } from 'react';
@@ -14,7 +14,7 @@ export default function SignupGuest({navigation}) {
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={[{ flex: 1 }, (Platform.OS === 'android') && {paddingTop: 10}]}
+            style={[{ flex: 1, paddingTop: 10}]}
         >
             <MyStatusBar />
             <ImageBackground
