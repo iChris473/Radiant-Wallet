@@ -69,7 +69,7 @@ export default function WalletCardComponent({navigation, wallet}) {
                     />
                 </TouchableOpacity>
             </View>
-            <Text style={styles.mainBalance}>${wallet?.total?.toLocaleString() || 0}.00</Text>
+            <Text style={styles.mainBalance}>${wallet?.total?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") || 0}</Text>
         </View>
     )
 }

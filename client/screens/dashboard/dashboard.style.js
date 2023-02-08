@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     },
     mainCard: {
         zIndex: 1,
-        marginTop: 25,
+        // marginTop: 25,
         width: "90%"
     },
     welcome: {
@@ -365,6 +365,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between'
+    },
+    userIcon: {
+        height: 30,
+        width: 30
     }
 })
 

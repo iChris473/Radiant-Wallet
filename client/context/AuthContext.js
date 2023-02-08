@@ -12,12 +12,16 @@ export const AuthContextProvider = ({children}) => {
 
     const getLoggedIn = async () => {
 
-        
-        const res = await request.get("/isloggedin");
-        
-        setLoggedIn(res?.data || false);
-
-        setAppLoading(false);
+        try {
+            
+            const res = await request.get("/isloggedin");
+            
+            setLoggedIn(res?.data || false);
+    
+            setAppLoading(false);
+        } catch (error) {
+            console.log(error)
+        }
 
     };
 

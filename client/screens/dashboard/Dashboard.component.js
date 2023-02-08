@@ -1,6 +1,6 @@
 import { useIsFocused } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, RefreshControl } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, RefreshControl, Image } from 'react-native';
 import { request } from '../../axios';
 import UserCircleIcon from '../../svgs/UserCircleIcon';
 import styles from './dashboard.style';
@@ -67,7 +67,11 @@ export default function DashboardComponent({navigation, setShowPhrase, setIsLoad
                     <View style={styles.cardIcons}>
                         <Text style={styles.welcome}>Welcome</Text>
                         <TouchableOpacity onPress={() => setShowPhrase(true)}>
-                            <UserCircleIcon />
+                            <Image
+                                source={require("../../assets/userPic.png")}
+                                resizeMode="contain"
+                                style={styles.userIcon}
+                            />
                         </TouchableOpacity>
                     </View>
                     {/* SUB CARD */}

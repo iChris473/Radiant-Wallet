@@ -14,10 +14,10 @@ export default function Dashboard({navigation}) {
     return (
         <ImageBackground
             resizeMode="cover"
-            style={[styles.imgBg, {paddingTop: 30}]}
+            style={[styles.imgBg, {paddingTop: Platform.OS === 'ios' ? 50 : 10}]}
             source={require("../../assets/bg2.png")}
         >
-            <StatusBar backgroundColor={'white'}  />
+            <StatusBar />
             <View style={styles.blueSemiCirlce} />
             <DashboardComponent navigation={navigation} setIsLoading={setIsLoading} setShowPhrase={setShowPhrase} />
             {showPhrase && <Settings setShowPhrase={setShowPhrase} />}

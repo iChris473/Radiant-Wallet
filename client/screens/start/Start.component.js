@@ -2,7 +2,6 @@
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { useEffect, useState } from 'react';
 import styles from "./start.style";
-import NoteIcon from '../../svgs/NoteIcon';
 import kid1 from "../../assets/kid1.png";
 import kid2 from "../../assets/kid2.png";
 import kid3 from "../../assets/kid3.png";
@@ -53,11 +52,9 @@ export default function StartComponent({navigation}) {
             />
             <View style={styles.btnCont}>        
                 <TouchableOpacity onPress={() => navigation.navigate("RegisterGuest")} style={[styles.billBtn, styles.imortBtn]}>
-                        <NoteIcon color={"black"} width={25} height={25} />
                         <Text style={[styles.signUpText, {color: 'black'}]}>Import Wallet</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate("Setup")} style={styles.billBtn}>
-                        <NoteIcon color={"#ccc"} width={25} height={25} />
                         <Text style={styles.signUpText}>Create Wallet</Text>
                 </TouchableOpacity>
             </View>

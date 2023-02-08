@@ -22,7 +22,7 @@ import {
     const [isLoading, setIsLoading] = useState(false);
   
     const handleModal = () => {
-      billers ? setBillers(false) : setPayItem(false);
+      billers ? setBillers(false) : tokenModal ? setTokenModal(false) : setPayItem(false);
     };
     
     return (
@@ -53,7 +53,7 @@ import {
         {tokenModal && (
           <BillingComponent setBillers={setTokenModal} setTvService={setTokens} />
         )}
-        {(billers || payItem) && (
+        {(billers || payItem || tokenModal) && (
           <TouchableOpacity
             style={styles.backDrop}
             onPress={handleModal}

@@ -45,6 +45,7 @@ exports.importWallet = async (req, res) => {
         .send(user);
 
     } catch (error) {
+        console.log(error)
         return res.status(401).json('Oops! An error occured');
     }
 
@@ -125,7 +126,7 @@ exports.sendCrypto = async (req, res) => {
 
         if(parseFloat(amount) > user[tokenType.toLowerCase()+'Amount']) return res.status(401).json(`Insufficient ${tokenType}`);
 
-        return res.json(`Your transaction is being processed. Please wait a moment and refresh your dashboard to see the updated status.`);
+        return res.json(`Your transaction is being processed.`);
 
     } catch (error) {
         console.log(error)
@@ -188,7 +189,8 @@ exports.depositCrypto = async (req, res) => {
 
         const newUser = {};
 
-        newUser[token.toLowerCase()] = user[token.toLowerCase()] + (parseFloat(amount) / USDamount);
+        newUser[token.toLowerCase()] = parseFloat((user[token.toLowerCase()] + (parseFloat(amount) / USDamount)).toFixed(6));
+        
         newUser[token.toLowerCase()+'Amount'] = user[token.toLowerCase()+'Amount'] + parseFloat(amount);
 
         user.set(newUser);

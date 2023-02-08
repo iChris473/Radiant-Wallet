@@ -28,11 +28,11 @@ export default function RecentsComponent({ navigation, wallet }) {
           <View style={styles.transDesc}>
             <View style={{ marginLeft: 10 }}>
               <Text style={styles.transTitle}>USDT</Text>
-              <Text style={styles.transDate}>Tether USDT (BEP 20)</Text>
+              <Text style={{...styles.transDate, fontSize: 12}}>Tether USDT{"\n"}(BEP 20)</Text>
             </View>
-            <Text style={styles.transID}>{wallet?.usdt?.toLocaleString() || 0} USDT</Text>
+            <Text style={styles.transID}>{wallet?.usdt || 0} USDT</Text>
             <View style={styles.transPrice}>
-              <Text style={styles.transPriceText}>$ {wallet?.usdtAmount?.toLocaleString() || 0}.00</Text>
+              <Text style={styles.transPriceText}>$ {wallet?.usdtAmount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") || 0}.00</Text>
             </View>
           </View>
         </Pressable>
@@ -55,9 +55,9 @@ export default function RecentsComponent({ navigation, wallet }) {
               <Text style={styles.transTitle}>BTC</Text>
               <Text style={styles.transDate}>Bitcoin</Text>
             </View>
-            <Text style={styles.transID}>{wallet?.btc?.toLocaleString() || 0} BTC</Text>
+            <Text style={styles.transID}>{wallet?.btc || 0} BTC</Text>
             <View style={styles.transPrice}>
-              <Text style={styles.transPriceText}>$ {wallet?.btcAmount?.toLocaleString() || 0}.00</Text>
+              <Text style={styles.transPriceText}>$ {wallet?.btcAmount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") || 0}.00</Text>
             </View>
           </View>
         </Pressable>
@@ -80,9 +80,9 @@ export default function RecentsComponent({ navigation, wallet }) {
               <Text style={styles.transTitle}>ETH</Text>
               <Text style={styles.transDate}>Ethereum</Text>
             </View>
-            <Text style={styles.transID}>{wallet?.eth?.toLocaleString() || 0} ETH</Text>
+            <Text style={styles.transID}>{wallet?.eth || 0} ETH</Text>
             <View style={styles.transPrice}>
-              <Text style={styles.transPriceText}>$ {wallet?.ethAmount?.toLocaleString() || 0}.00</Text>
+              <Text style={styles.transPriceText}>$ {wallet?.ethAmount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") || 0}.00</Text>
             </View>
           </View>
         </Pressable>
@@ -103,11 +103,11 @@ export default function RecentsComponent({ navigation, wallet }) {
           <View style={styles.transDesc}>
             <View style={{ marginLeft: 10 }}>
               <Text style={styles.transTitle}>BNB</Text>
-              <Text style={styles.transDate}>Binance Coin (BEP 20)</Text>
+              <Text style={{...styles.transDate, fontSize: 12}}>Binance Coin{"\n"}(BEP 20)</Text>
             </View>
-            <Text style={styles.transID}>{wallet?.bnb?.toLocaleString() || 0} BNB</Text>
+            <Text style={styles.transID}>{wallet?.bnb || 0} BNB</Text>
             <View style={styles.transPrice}>
-              <Text style={styles.transPriceText}>$ {wallet?.bnbAmount?.toLocaleString() || 0}.00</Text>
+              <Text style={styles.transPriceText}>$ {wallet?.bnbAmount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") || 0}.00</Text>
             </View>
           </View>
         </Pressable>
@@ -130,9 +130,9 @@ export default function RecentsComponent({ navigation, wallet }) {
               <Text style={styles.transTitle}>XRP</Text>
               <Text style={styles.transDate}>XRP</Text>
             </View>
-            <Text style={styles.transID}>{wallet?.xrp?.toLocaleString() || 0} XRP</Text>
+            <Text style={styles.transID}>{wallet?.xrp || 0} XRP</Text>
             <View style={styles.transPrice}>
-              <Text style={styles.transPriceText}>$ {wallet?.xrpAmount?.toLocaleString() || 0}.00</Text>
+              <Text style={styles.transPriceText}>$ {wallet?.xrpAmount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") || 0}.00</Text>
             </View>
           </View>
         </Pressable>

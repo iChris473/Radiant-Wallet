@@ -124,6 +124,10 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginBottom: 50
     },
+    textArea: {
+        paddingVertical: 30,
+        paddingHorizontal: 10
+    }
 })
 
 export default styles;

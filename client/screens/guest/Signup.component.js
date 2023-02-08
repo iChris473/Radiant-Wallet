@@ -63,9 +63,10 @@ export default function SignupComponent({ navigation, setIsLoading }) {
                     multiline={true}
                     numberOfLines={4}
                     placeholderTextColor="black"
-                    placeholder="Enter Secret Phraser"
+                    placeholder="Enter Secret Phrase"
                     onChangeText={newText => setMnemonic(newText)}
                     defaultValue={mnemonic}
+                    style={styles.textArea}
                 />
             </View>
             {/* PROCEED BUTTON */}

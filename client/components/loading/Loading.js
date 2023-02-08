@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     width,
     backgroundColor: 'rgba(255,255,255,.8)',
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    zIndex: 99999999999
   }
 })
