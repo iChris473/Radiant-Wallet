@@ -16,7 +16,6 @@ export default function SignupComponent({ navigation, setIsLoading }) {
         
         setIsLoading(true);
 
-
         try {
             
             await request.post('/import', { mnemonic });
